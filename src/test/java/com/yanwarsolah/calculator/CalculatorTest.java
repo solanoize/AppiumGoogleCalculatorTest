@@ -10,13 +10,15 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import io.appium.java_client.AppiumBy;
+import com.yanwarsolah.calculator.screens.CalculatorScreen;
+
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 
 public class CalculatorTest {
-  AndroidDriver driver;
-  UiAutomator2Options options;
+  private AndroidDriver driver;
+  private UiAutomator2Options options;
+  private CalculatorScreen calculatorScreen;
 
   @BeforeClass
   public void setup() throws MalformedURLException {
@@ -30,37 +32,34 @@ public class CalculatorTest {
 
     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     driver.hideKeyboard();
+
+    calculatorScreen = new CalculatorScreen(driver);
   }
 
   @Test(priority = 1)
   public void clickFiveTest() {
-    WebElement buttonFive = driver.findElement(AppiumBy.accessibilityId("5"));
-    buttonFive.click();
+    calculatorScreen.clickButtonFive();
   }
 
   @Test(priority = 2)
   public void clickPlusTest() {
-    WebElement buttonPlus = driver.findElement(AppiumBy.id("com.google.android.calculator:id/op_add"));
-    buttonPlus.click();
+    calculatorScreen.clickButtonPlus();
   }
 
   @Test(priority = 3)
   public void clickNineTest() {
-    WebElement buttonNine = driver.findElement(AppiumBy.xpath("//android.widget.ImageButton[@content-desc=\"9\"]"));
-    buttonNine.click();
+    calculatorScreen.clickButtonNine();
   }
 
   @Test(priority = 4)
   public void clickEqualTest() {
-    WebElement buttonEqual = driver.findElement(AppiumBy.id("com.google.android.calculator:id/eq"));
-    buttonEqual.click();
+    calculatorScreen.clickButtonEqual();
   }
 
   @Test(priority = 5)
   public void resultTest() {
-    WebElement result = driver.findElement(AppiumBy.id("com.google.android.calculator:id/result_final"));
     String expected = "14";
-    String actual = result.getText();
+    String actual = calculatorScreen.getResulFinal();
     Assert.assertEquals(actual, expected);
   }
 
