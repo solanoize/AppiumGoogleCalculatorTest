@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.yanwarsolah.calculator.screens.CalculatorScreen;
@@ -21,14 +22,15 @@ public class CalculatorTest {
   private CalculatorScreen calculatorScreen;
 
   @BeforeClass
-  public void setup() throws MalformedURLException {
+  @Parameters({ "url", "deviceName" })
+  public void setup(String url, String deviceName) throws MalformedURLException {
     options = new UiAutomator2Options();
     options.setCapability("platformName", "Android");
-    options.setCapability("appium:deviceName", "RR8T90084BR");
+    options.setCapability("appium:deviceName", deviceName);
     options.setCapability("appium:appPackage", "com.google.android.calculator");
     options.setCapability("appium:appActivity", "com.android.calculator2.Calculator");
 
-    driver = new AndroidDriver(new URL("http://127.0.0.1:4723"), options);
+    driver = new AndroidDriver(new URL(url), options);
 
     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     driver.hideKeyboard();
@@ -57,8 +59,8 @@ public class CalculatorTest {
   }
 
   @Test(priority = 5)
-  public void resultTest() {
-    String expected = "14";
+  @Parameters({ "expected" })
+  public void resultTest(String expected) {
     String actual = calculatorScreen.getResulFinal();
     Assert.assertEquals(actual, expected);
   }
