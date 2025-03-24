@@ -4,9 +4,18 @@
   <parameter name="url" value="http://127.0.0.1:4723"/>
   <parameter name="deviceName" value="RR8T90084BR"/>
   <parameter name="expected" value="14"/>
+  <parameter name="username" value="standard_user" />
+  <parameter name="password" value="secret_sauce" />
+  <parameter name="wrongPassword" value="secret_souce" />
+  <parameter name="errorWhenNotMatch" value="Username and password do not match any user in this service." />
+  <parameter name="errorWhenEmptyUsername" value="Username is required" />
+  <parameter name="errorWhenEmptyPassword" value="Password is required" />
   <test name="Firt My Test">
     <classes>
-      <class name="com.yanwarsolah.calculator.CalculatorTest" />
+      <class name="com.yanwarsolah.calculator.Hook" />
+      <class name="com.yanwarsolah.calculator.SignInTest" />
+      <class name="com.yanwarsolah.calculator.SignInNegativeEmptyUsernameTest" />
+      <class name="com.yanwarsolah.calculator.SignInNegativeNotMatchTest" />
     </classes>
   </test>
 </suite>
