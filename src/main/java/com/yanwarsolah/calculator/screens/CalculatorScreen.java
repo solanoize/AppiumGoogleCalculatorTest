@@ -18,6 +18,7 @@ public class CalculatorScreen {
 
   public void clickButtonFive() {
     driver.findElement(buttonFive).click();
+
   }
 
   public void clickButtonPlus() {
