@@ -56,7 +56,13 @@ public class SignInTest {
 
   @Test(priority = 5)
   public void logout() {
-    homeScreen.openMenu();
-    homeScreen.clickLogout();
+    homeScreen.scrollProducts();
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+    // homeScreen.accessButtonDrag();
+    homeScreen.dragToCarts();
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(25));
+    System.out.println("Total cart after customize: " + homeScreen.getTotalCart());
+    // homeScreen.openMenu();
+    homeScreen.clickCart();
   }
 }

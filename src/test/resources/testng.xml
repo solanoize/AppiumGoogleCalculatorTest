@@ -13,9 +13,10 @@
   <test name="Firt My Test">
     <classes>
       <class name="com.yanwarsolah.calculator.Hook" />
-      <class name="com.yanwarsolah.calculator.SignInTest" />
       <class name="com.yanwarsolah.calculator.SignInNegativeEmptyUsernameTest" />
       <class name="com.yanwarsolah.calculator.SignInNegativeNotMatchTest" />
+      <class name="com.yanwarsolah.calculator.SignInTest" />
+      <class name="com.yanwarsolah.calculator.CartTest" />
     </classes>
   </test>
 </suite>
