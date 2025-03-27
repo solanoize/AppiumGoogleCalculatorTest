@@ -1,5 +1,6 @@
 package com.yanwarsolah.calculator;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
@@ -11,6 +12,7 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.yanwarsolah.calculator.screens.SignInScreen;
+import com.yanwarsolah.calculator.utils.Screenshot;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
@@ -28,14 +30,16 @@ public class SignInNegativeNotMatchTest {
 
   @Test(priority = 1)
   @Parameters({ "username" })
-  public void fillUsername(String username) {
+  public void fillUsername(String username) throws IOException {
     signInScreen.setUsername(username);
+    Screenshot.shootByDate(driver, "02");
   }
 
   @Test(priority = 2)
   @Parameters({ "wrongPassword" })
-  public void fillPassword(String password) {
+  public void fillPassword(String password) throws IOException {
     signInScreen.setPassword(password);
+    Screenshot.shootByDate(driver, "03");
   }
 
   @Test(priority = 3)
@@ -45,9 +49,10 @@ public class SignInNegativeNotMatchTest {
 
   @Test(priority = 4)
   @Parameters({ "errorWhenNotMatch" })
-  public void compareError(String errorWhenNotMatch) {
+  public void compareError(String errorWhenNotMatch) throws IOException {
     String actual = signInScreen.getErrorMessage(SignInScreen.NOT_MATCH);
     System.out.println(actual);
+    Screenshot.shootByDate(driver, "03");
     Assert.assertEquals(actual, errorWhenNotMatch);
   }
 }
